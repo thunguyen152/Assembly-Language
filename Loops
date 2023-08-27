@@ -1,0 +1,29 @@
+.386
+.model flat, stdcall
+.stack 4096
+
+;Description: practicing with loops
+;explanation: loop L2 will continue execute until ecx reaches 0, then it will move back to loop L1
+	;everytime L2 executes, eax will be increased by 5, so the ending result would be eax = 28 until it restarts again
+
+ExitProcess PROTO, dwExitCode:DWORD
+.data
+	temp dword ?
+
+.code
+main PROC
+	mov eax,0			    ;eax = 0
+	mov ecx,10			  ;ecx = 10, determines how many times loop runs
+	L1:
+		mov eax,3		    ;eax = 3
+		mov temp,ecx	  ;temp = ecx = 10
+		mov ecx,5		    ;ecx = 5
+	L2:
+		add eax,5		    ;eax + 5
+		loop L2			    ;repeat loop 2
+		mov ecx, temp	  ;ecx = temp = 10
+	loop L1				    ;repeat loop 1
+
+	INVOKE ExitProcess, 0
+main ENDP
+END main
