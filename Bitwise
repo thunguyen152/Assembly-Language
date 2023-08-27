@@ -1,0 +1,24 @@
+.386
+.model flat, stdcall
+.stack 4096
+
+;Description: practicing with AND, OR, XOR bitwise operations
+
+ExitProcess PROTO, dwExitCode:DWORD
+
+.code
+main PROC
+	mov al,01101111b		;al = 01101111b
+	and al,00101101b		;01 101 111 AND 00 101 101 = 00 101 101, HEX = 2Dh
+	mov al,6Dh				  ;al = 6D = 01101101
+	and al,4Ah				  ;4A = 01001010
+							        ;01 101 101 AND 01 001 010 = 01 001 000, HEX = 48h
+	mov al,00001111b		;al = 00001111
+	or al,61h				    ;al = 61 = 01100001
+							        ;00 001 111 OR 01 100 001 = 01 101 111, HEX = 6Fh
+	mov al,94h			  	;al = 94 = 10010100
+	xor al,37h		  		;al = 37 = 00110111
+						        	;10 010 100 XOR 00 110 111 = 10 100 011, HEX = A3h
+	INVOKE ExitProcess, 0
+main ENDP
+END main
