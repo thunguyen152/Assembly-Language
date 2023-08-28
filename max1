@@ -1,0 +1,39 @@
+.386
+.model flat, stdcall
+.stack 4096
+
+;Description: find the maximum element in the array
+
+ExitProcess PROTO, dwExitCode:DWORD
+.data 
+	Array WORD 10, 2, 23, 45, 21, 11
+	MAXIMUM WORD ?
+
+.code
+main PROC
+	mov ecx, LENGTHOF Array * 2		;WORD = 2 bytes
+	mov esi, 0						
+	mov ax, Array[esi]				;ax = 10
+
+	L1:
+		cmp esi, ecx				;compare esi to ecx, if esi = ecx, then that means it reaches the end of the array
+		jge L4						;jump to loot 4
+		cmp ax, Array[esi]			
+		jl L2						;if ax < Array[esi], go to L2
+		jge L3						;if ax >= Array[esi], go to L3
+
+	L2:
+		mov ax, Array[esi]			;set ax to be the current value of Array[esi]
+		add esi, 2					;WORD = 2, so add 2 to move to the next element
+		jmp L1						;jump to L1
+
+	L3:
+		add esi, 2					;WORD = 2, so add 2 to move to the next element
+		jmp L1						;jump to L1
+	
+	L4:
+		mov MAXIMUM, ax				;MAXIMUM = ax
+
+	INVOKE ExitProcess, 0
+main ENDP
+END main
