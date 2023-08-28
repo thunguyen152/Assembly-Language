@@ -1,0 +1,33 @@
+.386
+.model flat, stdcall
+.stack 4096
+
+;Description: practice with imul and idiv
+
+ExitProcess PROTO, dwExitCode:DWORD
+.data 
+	var1 SDWORD 100
+	var2 SDWORD 200
+	var3 SDWORD 50
+	var4 SDWORD ?
+
+.code
+main PROC
+	mov eax, 0			;set to 0
+	mov ebx, 0
+	mov ecx, 0
+
+	mov eax, 5			;eax = 5
+	mov ebx, var3		;ebx = 50
+	imul ebx			;50 * 5 = 250
+	mov ecx, eax		;ecx = eax = 250
+
+	mov eax, var1		;eax = 100
+	imul var2			;100 * 200 = 20000
+	idiv ecx			;20000 / 250 = 80
+
+	mov var4, eax		;var4 = eax = 80
+
+	INVOKE ExitProcess, 0
+main ENDP
+END main
