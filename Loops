@@ -12,16 +12,16 @@ ExitProcess PROTO, dwExitCode:DWORD
 
 .code
 main PROC
-	mov eax,0			    ;eax = 0
-	mov ecx,10			  ;ecx = 10, determines how many times loop runs
+        mov eax,0			    ;eax = 0
+	mov ecx,10			    ;ecx = 10, determines how many times loop runs
 	L1:
 		mov eax,3		    ;eax = 3
-		mov temp,ecx	  ;temp = ecx = 10
+		mov temp,ecx	 	    ;temp = ecx = 10
 		mov ecx,5		    ;ecx = 5
 	L2:
 		add eax,5		    ;eax + 5
 		loop L2			    ;repeat loop 2
-		mov ecx, temp	  ;ecx = temp = 10
+		mov ecx, temp	  	    ;ecx = temp = 10
 	loop L1				    ;repeat loop 1
 
 	INVOKE ExitProcess, 0
