@@ -20,19 +20,19 @@ main PROC
 	L1:
 		mov al, [esi]			;al = A (1st loop), al = C (2nd loop)
 		xchg al, [edi + 6]		;G, B, C, D, E, F, A, H (1st loop)
-								;G, H, E, D, C, F, A, B (2nd loop)
+						;G, H, E, D, C, F, A, B (2nd loop)
 		mov [esi], al			
-		inc esi					;esi + 1
-		inc edi					;edi + 1
+		inc esi				;esi + 1
+		inc edi				;edi + 1
 		mov al, [esi]			;al = B (1st loop), al = D (2nd loop)
 		xchg al, [edi + 6]		;G, H, C, D, E, F, A, B (1st loop)
-								;G, H, E, F, C, D, A, B (2nd loop)
+						;G, H, E, F, C, D, A, B (2nd loop)
 		mov [esi], al			
 		Loop L2					
 
 	L2:	
-		inc esi					;esi + 1
-		sub edi, 3				;edi - 3
+		inc esi				;esi + 1
+		sub edi, 3			;edi - 3
 		Loop L1
 
 
